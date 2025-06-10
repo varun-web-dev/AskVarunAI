@@ -132,7 +132,7 @@ header .sub-heading{
     padding-left: 20px;
     color: var(--text-color);
 }
-.prompt-form input::placeholder{
+.prompt-form .prompt-input::placeholder{
     color: var(--placeholder-color);
 }
 .prompt-wrapper button{
@@ -151,6 +151,28 @@ header .sub-heading{
 .prompt-wrapper button:hover{
     background-color: var(--secondary-hover-color);
 }
+.prompt-form .prompt-actions{
+    margin-right: 7px;
+    gap: 4px;
+}
+.prompt-form .prompt-actions button{
+ height: 50px;
+ width: 50px;
+}
+
+/* the send prompt button will only be displayed when the input field contains a value(required attribute must in input feild) */
+.prompt-form .prompt-input:valid + .prompt-actions #send-prompt-btn{
+    display: block;
+}
+.prompt-form #send-prompt-btn{
+background-color: #1d7efe;
+display: none;
+color: white;
+}
+.prompt-form #send-prompt-btn:hover{
+    background-color: #026efc;
+}
+
 .prompt .disclaimer-text{
     text-align: center;
     padding: 20px 0 0 0;
