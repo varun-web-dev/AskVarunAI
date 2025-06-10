@@ -58,6 +58,10 @@ header .sub-heading{
  overflow-x: auto;
  scrollbar-width: none;
 }
+
+.container :where(header,.suggestions){
+    display: none;
+}
 .suggestions .suggestions-item{
     width: 15rem;
     padding: 20px;
