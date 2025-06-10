@@ -97,3 +97,63 @@ header .sub-heading{
 .suggestions .suggestions-item:nth-child(4) span{
     color: rgb(41, 127, 207);
 }
+
+/* Prompt section  */
+
+.prompt{
+    position: fixed;
+    left:0;
+    bottom: 0;
+    background-color: var(--primary-color);
+    
+    padding: 20px 0;
+    width: 100%;
+}
+.prompt :where(.prompt,.prompt-wrapper,.prompt-form,.prompt-actions){
+    display: flex;
+    gap: 15px;
+    height: 60px;
+    align-items: center;
+}
+.prompt-wrapper .prompt-form{
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    margin-left: 20px;
+    background: var(--secondary-color);
+}
+.prompt-form input{
+    height: 100%;
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: large;
+    padding-left: 20px;
+    color: var(--text-color);
+}
+.prompt-form input::placeholder{
+    color: var(--placeholder-color);
+}
+.prompt-wrapper button{
+    height: 100%;
+    width: 60px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    cursor: pointer;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    transition: 0.5s ease;
+}
+.prompt-wrapper button:hover{
+    background-color: var(--secondary-hover-color);
+}
+.prompt .disclaimer-text{
+    text-align: center;
+    padding: 20px 0 0 0;
+    font-size: large;
+    color: var(--placeholder-color);
+}
