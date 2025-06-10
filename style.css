@@ -67,12 +67,17 @@ header .sub-heading{
     justify-content: space-between;
     background-color: var(--secondary-color);
     flex-shrink: 0;
-    cursor: pointer
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+.suggestions .suggestions-item:hover{
+ background: var(--secondary-hover-color);
 }
 .suggestions .suggestions-item .text{
     font-size: 1.15rem
 }
 .suggestions .suggestions-item span{
+    color: blue;
     background-color: var(--primary-color);
     height: 40px;
     width: 40px;
@@ -82,4 +87,13 @@ header .sub-heading{
     align-items: center;
     justify-content: center;
     align-self: flex-end;
+}
+.suggestions .suggestions-item:nth-child(2) span{
+    color: yellow;
+}
+.suggestions .suggestions-item:nth-child(3) span{
+    color: green;
+}
+.suggestions .suggestions-item:nth-child(4) span{
+    color: rgb(41, 127, 207);
 }
