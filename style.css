@@ -47,3 +47,39 @@ header .sub-heading{
  color: var(--sub-heading-color);
  margin-top: -10px;
 }
+
+/* Suggestion list styling */
+
+.suggestions{
+ display: flex;
+ gap: 20px;
+ list-style: none;
+ margin-top: 5rem;
+ overflow-x: auto;
+ scrollbar-width: none;
+}
+.suggestions .suggestions-item{
+    width: 15rem;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--secondary-color);
+    flex-shrink: 0;
+    cursor: pointer
+}
+.suggestions .suggestions-item .text{
+    font-size: 1.15rem
+}
+.suggestions .suggestions-item span{
+    background-color: var(--primary-color);
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+}
