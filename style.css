@@ -124,7 +124,7 @@ header .sub-heading{
 
 }
 .chat .bot-msg{
-    margin: 10px auto;
+    margin: 10px 10px;
 }
 .chat .bot-msg .text{
     background: var(--secondary-hover-color);
