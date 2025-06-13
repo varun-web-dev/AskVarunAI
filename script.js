@@ -5,7 +5,10 @@ const chatBox = document.querySelector(".chat");
 //Genrating API key from the google ai studio
 const API_KEY = "AIzaSyAMvUzQlvslKsVnGb6MZX3Cy_yzACOZNvs";
 // Add API url of the gemini-2.0-flash
-const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}";
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+
+const userMsg = "";
+const chatHistory = [];
 
 // Function to create a message element
 const createMsg = (content, className) => {
@@ -30,12 +33,18 @@ const createMsg = (content, className) => {
 }
 
 //Making API calls(for generating bot reply)
-const genrateresponse = async () => {
+const genrateresponse = async (userMsg) => {
+    
+    //Add useMsg to the chat History
+    chatHistory.push({
+        role: "user",
+        parts: [{ text: userMsg}]
+    })
     try {
         const response = await fetch(API_URL,{
             method: "POST",
-            Headers: {"content-type" : "application/json"},
-            body: JSON.stringify()
+            headers: {"content-type" : "application/json"},
+            body: JSON.stringify({contents : chatHistory})
         });
 
         const data = await response.json();
@@ -72,7 +81,7 @@ const formSubmit = (el) => {
     setTimeout(() => {
         const botMsgDiv = createMsg("Just a sec....", "bot-msg");
         chatBox.appendChild(botMsgDiv);
-        genrateresponse()
+        genrateresponse(userMsg)
     }, 600);
 }
 // connect the function to the form
