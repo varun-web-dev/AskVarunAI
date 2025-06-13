@@ -1,13 +1,16 @@
 const promptForm = document.querySelector(".prompt-form");
 const promptInput = document.querySelector(".prompt-input");
-const chatBox = document.querySelector(".chat"); 
+const chatBox = document.querySelector(".chat");
+
+//Genrating API key from the google ai studio
+const API_KEY = "AIzaSyAMvUzQlvslKsVnGb6MZX3Cy_yzACOZNvs";
+// Add API url of the gemini-2.0-flash
+const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}";
 
 // Function to create a message element
-
 const createMsg = (content, className) => {
     const div = document.createElement("div"); //create a <div> tag
     div.classList.add("msg", className); //add class:msg
-
 
     //Add bot reply logo
     if (className === "bot-msg") {
@@ -18,7 +21,6 @@ const createMsg = (content, className) => {
         div.appendChild(img);
     }
 
-
     const p = document.createElement("p"); //create a <p> tag
     p.classList.add("text"); //add class:text to the <p>
     p.textContent = content; //set the message text inside the <p>
@@ -27,7 +29,25 @@ const createMsg = (content, className) => {
     return div;
 }
 
-// 
+//Making API calls(for generating bot reply)
+const genrateresponse = async () => {
+    try {
+        const response = await fetch(API_URL,{
+            method: "POST",
+            Headers: {"content-type" : "application/json"},
+            body: JSON.stringify()
+        });
+
+        const data = await response.json();
+        if(!response) throw new Error (data.error.message)
+            console.log(data);
+    } 
+    catch (error) {
+        console.log(error);
+    }
+}
+
+//Handle the form submission task
 const formSubmit = (el) => {
 
     //stop refreshing and remove extra spaces
@@ -35,7 +55,7 @@ const formSubmit = (el) => {
     let userMsg = promptInput.value.trim();
 
     // if input is empty do nothing
-    if(userMsg===""){
+    if (userMsg === "") {
         return;
     }
     // if input is not empty print on console
@@ -48,12 +68,12 @@ const formSubmit = (el) => {
     const userMsgDiv = createMsg(userMsg, "user-msg");
     chatBox.appendChild(userMsgDiv);
 
-    //(bot reply)Create a new message element and add it to the chat
+    //(bot reply)Create a new message element and add it to the chat after 600 ms
     setTimeout(() => {
-    const botMsgDiv = createMsg("Just a sec....", "bot-msg");
-    chatBox.appendChild(botMsgDiv);
-    genrateresponse()
-    }, 1000);
+        const botMsgDiv = createMsg("Just a sec....", "bot-msg");
+        chatBox.appendChild(botMsgDiv);
+        genrateresponse()
+    }, 600);
 }
 // connect the function to the form
 promptForm.addEventListener("submit", formSubmit);
