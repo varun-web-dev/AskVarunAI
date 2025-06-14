@@ -108,6 +108,9 @@ header .sub-heading{
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow-y: auto;
+    padding-bottom: 100px;
+    scroll-behavior:smooth;
 }
 .chat .msg{
     display: flex;

@@ -10,6 +10,11 @@ const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-
 const userMsg = "";
 const chatHistory = [];
 
+//add scrool to bottom function for chat section
+const scrollToBottom = () => {
+    chatBox.scrollTop = chatBox.scrollHeight;
+};
+
 // Function to create a message element
 const createMsg = (content, className) => {
     const div = document.createElement("div"); //create a <div> tag
@@ -56,13 +61,13 @@ const genrateresponse = async (botMsgDiv,userMsg) => {
 
             //process the response text and displayed it
             const responseText = data.candidates[0].content.parts[0].text.replace(/\*\*([^*]+)\*\*/g, "$1").trim();
+
             //Reply with typing effect
             botreply.textContent = "";
             [...responseText].forEach((char,i) => {
                 setTimeout(() => botreply.textContent += char, i * 20);
+                scrollToBottom();
             });
-            
-
             
     } 
     catch (error) {
@@ -81,20 +86,23 @@ const formSubmit = (el) => {
     if (userMsg === "") {
         return;
     }
+
     // if input is not empty print on console
     console.log(userMsg);
-
+    
     // clear input field after submitting
     promptInput.value = "";
 
     // (user message)Create a new message element and add it to the chat
     const userMsgDiv = createMsg(userMsg, "user-msg");
     chatBox.appendChild(userMsgDiv);
+    scrollToBottom();
 
     //(bot reply)Create a new message element and add it to the chat after 600 ms
     setTimeout(() => {
         const botMsgDiv = createMsg("Just a sec....", "bot-msg");
         chatBox.appendChild(botMsgDiv);
+        scrollToBottom();
         genrateresponse(botMsgDiv,userMsg)
     }, 600);
 }
