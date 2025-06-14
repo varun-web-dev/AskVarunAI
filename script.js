@@ -33,7 +33,11 @@ const createMsg = (content, className) => {
 }
 
 //Making API calls(for generating bot reply)
-const genrateresponse = async (userMsg) => {
+const genrateresponse = async (botMsgDiv,userMsg) => {
+
+
+    //create element of botreply in text on chatbox  
+    const botreply = botMsgDiv.querySelector(".text");
     
     //Add useMsg to the chat History
     chatHistory.push({
@@ -49,7 +53,11 @@ const genrateresponse = async (userMsg) => {
 
         const data = await response.json();
         if(!response) throw new Error (data.error.message)
-            console.log(data);
+
+            //process the response text and displayed it
+            const responseText = data.candidates[0].content.parts[0].text.replace(/\*\*([^*]+)\*\*/g, "$1").trim();
+            botreply.textContent = responseText;
+            
     } 
     catch (error) {
         console.log(error);
@@ -81,7 +89,7 @@ const formSubmit = (el) => {
     setTimeout(() => {
         const botMsgDiv = createMsg("Just a sec....", "bot-msg");
         chatBox.appendChild(botMsgDiv);
-        genrateresponse(userMsg)
+        genrateresponse(botMsgDiv,userMsg)
     }, 600);
 }
 // connect the function to the form
