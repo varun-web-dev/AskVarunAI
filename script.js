@@ -56,7 +56,13 @@ const genrateresponse = async (botMsgDiv,userMsg) => {
 
             //process the response text and displayed it
             const responseText = data.candidates[0].content.parts[0].text.replace(/\*\*([^*]+)\*\*/g, "$1").trim();
-            botreply.textContent = responseText;
+            //Reply with typing effect
+            botreply.textContent = "";
+            [...responseText].forEach((char,i) => {
+                setTimeout(() => botreply.textContent += char, i * 20);
+            });
+            
+
             
     } 
     catch (error) {
