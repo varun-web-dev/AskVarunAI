@@ -70,7 +70,7 @@ header .sub-heading{
 }
 
 .container :where(header,.suggestions){
-    display: none;
+    /* display: none; */
 }
 .suggestions .suggestions-item{
     width: 15rem;

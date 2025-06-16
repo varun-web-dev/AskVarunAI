@@ -2,6 +2,7 @@ const promptForm = document.querySelector(".prompt-form");
 const promptInput = document.querySelector(".prompt-input");
 const chatBox = document.querySelector(".chat");
 const toggleBtn = document.querySelector("#theme-toggle-btn");
+const suggestionsItems = document.querySelectorAll(".suggestions-item");
 
 //Genrating API key from the google ai studio
 const API_KEY = "AIzaSyAMvUzQlvslKsVnGb6MZX3Cy_yzACOZNvs";
@@ -123,3 +124,12 @@ toggleBtn.addEventListener("click", () => {
     //Icon changes after toggling
     toggleBtn.textContent = isLightTheme ? "dark_mode" : "light_mode"
 });
+
+//Response on suggestion items clicks
+suggestionsItems.forEach(item => {
+    item.addEventListener("click", () => {
+    promptInput.value = item.querySelector(".text").textContent;
+    //on click submitting
+    promptForm.dispatchEvent(new Event("submit"));
+    })
+})
