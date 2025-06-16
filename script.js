@@ -1,6 +1,7 @@
 const promptForm = document.querySelector(".prompt-form");
 const promptInput = document.querySelector(".prompt-input");
 const chatBox = document.querySelector(".chat");
+const toggleBtn = document.querySelector("#theme-toggle-btn");
 
 //Genrating API key from the google ai studio
 const API_KEY = "AIzaSyAMvUzQlvslKsVnGb6MZX3Cy_yzACOZNvs";
@@ -113,4 +114,12 @@ promptForm.addEventListener("submit", formSubmit);
 document.querySelector("#delete-chats-btn").addEventListener("click",() => {
     chatHistory.length = 0;
     chatBox.innerHTML = "";
-})
+});
+
+//toggle dark theme to light theme
+toggleBtn.addEventListener("click", () => {
+    const isLightTheme = document.body.classList.toggle("light-theme");
+
+    //Icon changes after toggling
+    toggleBtn.textContent = isLightTheme ? "dark_mode" : "light_mode"
+});

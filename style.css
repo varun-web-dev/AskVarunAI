@@ -19,6 +19,16 @@
     --scrollbar-color:#626a75;
 }
 
+body.light-theme{
+    /* light theme color */
+    --text-color: #090c13;
+    --sub-heading-color: #7b8cae;
+    --placeholder-color: #606982;
+    --primary-color: #f3f7ff;
+    --secondary-color: #dce6f9;
+    --secondary-hover-color: #d2ddf2;
+    --scrollbar-color: #a2aac2;
+}
 body{
     color:var(--text-color);
     background: var(--primary-color);
