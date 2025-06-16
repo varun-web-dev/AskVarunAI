@@ -95,6 +95,9 @@ const formSubmit = (el) => {
     // clear input field after submitting
     promptInput.value = "";
 
+    //activate chat view
+    document.body.classList.add("chat-active");
+
     // (user message)Create a new message element and add it to the chat
     const userMsgDiv = createMsg(userMsg, "user-msg");
     chatBox.appendChild(userMsgDiv);
@@ -115,6 +118,8 @@ promptForm.addEventListener("submit", formSubmit);
 document.querySelector("#delete-chats-btn").addEventListener("click",() => {
     chatHistory.length = 0;
     chatBox.innerHTML = "";
+    //Show header/suggestions again
+  document.body.classList.remove("chat-active");
 });
 
 //toggle dark theme to light theme

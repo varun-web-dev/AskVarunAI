@@ -69,8 +69,8 @@ header .sub-heading{
  scrollbar-width: none;
 }
 
-.container :where(header,.suggestions){
-    /* display: none; */
+body.chat-active .container :where(header , .suggestions){
+    display: none;
 }
 .suggestions .suggestions-item{
     width: 15rem;
