@@ -66,10 +66,12 @@ const genrateresponse = async (botMsgDiv,userMsg) => {
 
             //Reply with typing effect
             botreply.textContent = "";
-            [...responseText].forEach((char,i) => {
-                setTimeout(() => botreply.textContent += char, i * 20);
-                scrollToBottom();
-            });
+            [...responseText].forEach((char, i) => {
+            setTimeout(() => {
+            botreply.textContent += char;
+            scrollToBottom(); 
+            }, i * 20);
+});
             
     } 
     catch (error) {
