@@ -108,3 +108,9 @@ const formSubmit = (el) => {
 }
 // connect the function to the form
 promptForm.addEventListener("submit", formSubmit);
+
+//Delete all chats
+document.querySelector("#delete-chats-btn").addEventListener("click",() => {
+    chatHistory.length = 0;
+    chatBox.innerHTML = "";
+})
