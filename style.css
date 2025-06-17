@@ -51,11 +51,22 @@ header .heading{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+header .logo-wrap{
+    display: flex;
+    align-items: center;
+}
+
+header .header-logo{
+    height: 100px;
+    width: 100px;
+    margin: -20px;
+}
 
 header .sub-heading{
- font-size: 2rem;
+ font-size: 2.5rem;
  color: var(--sub-heading-color);
  margin-top: -10px;
+
 }
 
 /* Suggestion list styling */
@@ -124,7 +135,7 @@ body.chat-active .container :where(header , .suggestions){
 }
 .chat .msg{
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 10px;
 }
 .chat .bot-msg .logo{
@@ -132,18 +143,13 @@ body.chat-active .container :where(header , .suggestions){
     width: 40px;
     border-radius: 50%;
     flex-shrink: 0;
-    padding: 3px;
     border: 2px solid var(--secondary-hover-color);
 
 }
 .chat .bot-msg{
     margin: 10px 10px;
 }
-.chat .bot-msg .text{
-    background: var(--secondary-hover-color);
-   border-radius: 15px 15px 15px 2px;
 
-}
 .chat .msg .text{
     max-width: 75%;
     padding: 5px 17px;
@@ -167,7 +173,6 @@ background: var(--secondary-color);
     left:0;
     bottom: 0;
     background-color: var(--primary-color);
-    
     padding: 20px 0;
     width: 100%;
 }

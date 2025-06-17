@@ -90,7 +90,6 @@ const formSubmit = (el) => {
     if (userMsg === "") {
         return;
     }
-
     // if input is not empty print on console
     console.log(userMsg);
     
