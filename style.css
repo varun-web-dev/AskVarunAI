@@ -246,3 +246,82 @@ color: white;
     font-size: large;
     color: var(--placeholder-color);
 }
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 20px 10px 80px;
+    }
+
+    header .heading {
+        font-size: 2.8rem;
+        text-align: center;
+    }
+
+    header .sub-heading {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    header .header-logo {
+        height: 100px;
+        width: 100px;
+    }
+
+    .suggestions {
+        gap: 10px;
+        margin-top: 3rem;
+        padding: 0 10px;
+    }
+
+    .suggestions .suggestions-item {
+        width: 12rem;
+        padding: 15px;
+    }
+
+    .chat {
+        padding: 10px 10px 120px;
+        gap: 15px;
+    }
+
+    .chat .msg .text {
+        max-width: 90%;
+        font-size: 0.95rem;
+    }
+
+    .chat .user-msg .text {
+        max-width: 85%;
+    }
+
+    .prompt {
+        padding: 10px 0;
+    }
+
+    .prompt :where(.prompt, .prompt-wrapper, .prompt-form, .prompt-actions) {
+        gap: 10px;
+        height: 50px;
+    }
+
+    .prompt-wrapper .prompt-form {
+        margin-left: 10px;
+    }
+
+    .prompt-form input {
+        font-size: 1rem;
+        padding-left: 15px;
+    }
+
+    .prompt-wrapper button {
+        width: 50px;
+        font-size: 1.3rem;
+    }
+
+    .prompt-form .prompt-actions button {
+        height: 40px;
+        width: 40px;
+    }
+
+    .prompt .disclaimer-text {
+        font-size: 0.6rem;
+        padding-top: 10px;
+    }
+}
