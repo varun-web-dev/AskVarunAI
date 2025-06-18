@@ -5,7 +5,7 @@ const toggleBtn = document.querySelector("#theme-toggle-btn");
 const suggestionsItems = document.querySelectorAll(".suggestions-item");
 
 //Genrating API key from the google ai studio
-const API_KEY = "AIzaSyAMvUzQlvslKsVnGb6MZX3Cy_yzACOZNvs";
+const API_KEY = process.env.api_key;
 // Add API url of the gemini-2.0-flash
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
