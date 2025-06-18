@@ -4,7 +4,7 @@ const chatBox = document.querySelector(".chat");
 const toggleBtn = document.querySelector("#theme-toggle-btn");
 const suggestionsItems = document.querySelectorAll(".suggestions-item");
 
-console.log("Key:", API_KEY);
+
 // Add API url of the gemini-2.0-flash
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
