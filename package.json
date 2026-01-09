@@ -1,0 +1,27 @@
+{
+  "name": "my-gemini",
+  "version": "1.0.0",
+  "description": "Try to create Gemini AI ChatBot using my basic skills in html5,css3 and JavaScript",
+  "main": "apikey.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/varun-web-dev/My-Gemini.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/varun-web-dev/My-Gemini/issues"
+  },
+  "homepage": "https://github.com/varun-web-dev/My-Gemini#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "node-fetch": "^3.3.2"
+  }
+}

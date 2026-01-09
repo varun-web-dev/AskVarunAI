@@ -39,40 +39,41 @@ const createMsg = (content, className) => {
 }
 
 //Making API calls(for generating bot reply)
-const genrateresponse = async (botMsgDiv,userMsg) => {
+const genrateresponse = async (botMsgDiv, userMsg) => {
 
 
     //create element of botreply in text on chatbox  
     const botreply = botMsgDiv.querySelector(".text");
-    
+
     //Add useMsg to the chat History
     chatHistory.push({
         role: "user",
-        parts: [{ text: userMsg}]
+        parts: [{ text: userMsg }]
     })
     try {
-        const response = await fetch(API_URL,{
+        const response = await fetch("/api/chat", {
             method: "POST",
-            headers: {"content-type" : "application/json"},
-            body: JSON.stringify({contents : chatHistory})
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ contents: chatHistory })
         });
 
+
         const data = await response.json();
-        if(!response) throw new Error (data.error.message)
+        if (!response) throw new Error(data.error.message)
 
-            //process the response text and displayed it
-            const responseText = data.candidates[0].content.parts[0].text.replace(/\*\*([^*]+)\*\*/g, "$1").trim();
+        //process the response text and displayed it
+        const responseText = data.candidates[0].content.parts[0].text.replace(/\*\*([^*]+)\*\*/g, "$1").trim();
 
-            //Reply with typing effect
-            botreply.textContent = "";
-            [...responseText].forEach((char, i) => {
+        //Reply with typing effect
+        botreply.textContent = "";
+        [...responseText].forEach((char, i) => {
             setTimeout(() => {
-            botreply.textContent += char;
-            scrollToBottom(); 
+                botreply.textContent += char;
+                scrollToBottom();
             }, i * 20);
-});
-            
-    } 
+        });
+
+    }
     catch (error) {
         console.log(error);
     }
@@ -91,7 +92,7 @@ const formSubmit = (el) => {
     }
     // if input is not empty print on console
     console.log(userMsg);
-    
+
     // clear input field after submitting
     promptInput.value = "";
 
@@ -108,18 +109,18 @@ const formSubmit = (el) => {
         const botMsgDiv = createMsg("Just a sec....", "bot-msg");
         chatBox.appendChild(botMsgDiv);
         scrollToBottom();
-        genrateresponse(botMsgDiv,userMsg)
+        genrateresponse(botMsgDiv, userMsg)
     }, 600);
 }
 // connect the function to the form
 promptForm.addEventListener("submit", formSubmit);
 
 //Delete all chats
-document.querySelector("#delete-chats-btn").addEventListener("click",() => {
+document.querySelector("#delete-chats-btn").addEventListener("click", () => {
     chatHistory.length = 0;
     chatBox.innerHTML = "";
     //Show header/suggestions again
-  document.body.classList.remove("chat-active");
+    document.body.classList.remove("chat-active");
 });
 
 //toggle dark theme to light theme
@@ -133,8 +134,8 @@ toggleBtn.addEventListener("click", () => {
 //Response on suggestion items clicks
 suggestionsItems.forEach(item => {
     item.addEventListener("click", () => {
-    promptInput.value = item.querySelector(".text").textContent;
-    //on click submitting
-    promptForm.dispatchEvent(new Event("submit"));
+        promptInput.value = item.querySelector(".text").textContent;
+        //on click submitting
+        promptForm.dispatchEvent(new Event("submit"));
     })
 })
