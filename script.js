@@ -56,8 +56,11 @@ const genrateresponse = async (botMsgDiv, userMsg) => {
 
 
         const data = await response.json();
-        if (!response) throw new Error(data.error.message)
-
+        if (!data.candidates || data.candidates.length === 0) {
+            botreply.textContent = "Sorry, something went wrong.Please try again.";
+            console.log("Gemini API response:", data); 
+            return;
+        }
         //process the response text and displayed it
         const responseText = data.candidates[0].content.parts[0].text.replace(/\*\*([^*]+)\*\*/g, "$1").trim();
 
