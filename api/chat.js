@@ -35,14 +35,15 @@ export default async function handler(req, res) {
       }
     );
 
-    const text = await response.text(); // <-- important: use text first
+    const text = await response.text();
     let data;
     try {
-      data = JSON.parse(text); // convert to JSON safely
-    } catch (err) {
-      console.log("Failed to parse Gemini response:", text);
-      return res.status(500).json({ error: "Invalid JSON from Gemini API", raw: text });
+      data = JSON.parse(text);
+    } catch {
+      console.log("Gemini returned non-JSON:", text);
+      return res.status(500).json({ error: "Gemini API did not return JSON", raw: text });
     }
+
 
     if (data.error) {
       console.log("Gemini API error:", data.error);
