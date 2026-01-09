@@ -62,7 +62,7 @@ const genrateresponse = async (botMsgDiv, userMsg) => {
             return;
         }
         //process the response text and displayed it
-        const responseText = data.candidates[0].content.parts[0].text.replace(/\*\*([^*]+)\*\*/g, "$1").trim();
+        const responseText = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "Sorry, I can't reply 😅";
 
         //Reply with typing effect
         botreply.textContent = "";

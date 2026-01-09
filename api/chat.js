@@ -4,18 +4,41 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Read API key from environment variable
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) return res.status(500).json({ error: "API key not set" });
+
+    // Extract last user message
+    const { contents } = req.body;
+    if (!contents || contents.length === 0) return res.status(400).json({ error: "No messages provided" });
+
+    const lastMessage = contents[contents.length - 1].parts[0].text;
+
+    // Proper Gemini payload
+    const payload = {
+      input: lastMessage
+    };
+
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(req.body),
+        body: JSON.stringify(payload)
       }
     );
 
     const data = await response.json();
+
+    if (data.error) {
+      console.log("Gemini API returned error:", data.error);
+      return res.status(400).json({ error: data.error });
+    }
+
     res.status(200).json(data);
+
   } catch (error) {
+    console.log("Server error:", error);
     res.status(500).json({ error: error.message });
   }
 }
