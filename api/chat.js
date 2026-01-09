@@ -1,17 +1,20 @@
+import fetch from "node-fetch";
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
-    // Read API key from environment variable
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) return res.status(500).json({ error: "API key not set" });
 
-    // Extract last user message
     const { contents } = req.body;
-    if (!contents || contents.length === 0) return res.status(400).json({ error: "No messages provided" });
+    if (!contents || contents.length === 0) {
+      return res.status(400).json({ error: "No messages provided" });
+    }
 
+    // Send only last user message
     const lastMessage = contents[contents.length - 1].parts[0].text;
 
     // Proper Gemini payload
@@ -31,7 +34,7 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (data.error) {
-      console.log("Gemini API returned error:", data.error);
+      console.log("Gemini API error:", data.error);
       return res.status(400).json({ error: data.error });
     }
 
